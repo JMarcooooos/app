@@ -2,7 +2,7 @@
 
 # Painel de Escolas
 
-![]](www/logo.png)
+![](www/logo.png)
 
 O script apresenta a realização de um painel exploratório das escolas da rede estadual do estado de Goiás, mostrando tanto informações das escolas em um layout geográfico, quanto monta rotas entre as escolas.
 
