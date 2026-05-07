@@ -1449,7 +1449,18 @@ server <- function(input, output, session) {
     distancias <- st_distance(escolas_sf, base_sf)
     raio_metros <- input$rot_raio * 1000
 
-    escolas_no_raio <- escolas_sf[as.numeric(distancias) <= raio_metros, ]
+    escolas_no_raio <- escolas_sf[as.numeric(distancias) <= raio_metros, ] %>%
+      mutate(
+        COR_MARCADOR = case_when(
+          !is.na(CONVENIO) &
+            toupper(CONVENIO) != "NÃO POSSUI" &
+            CONVENIO != "-" ~ "#f59e0b",
+          TIPO == "Escola Militar" ~ "#10b981",
+          TIPO == "Escola Especial" ~ "#3b82f6",
+          TIPO == "Escola Integral" ~ "#ef4444",
+          TRUE ~ "#1a56db"
+        )
+      )
     bbox <- st_bbox(escolas_no_raio)
 
     leafletProxy("mapa_roteirizador") %>%
@@ -1473,7 +1484,7 @@ server <- function(input, output, session) {
         radius = 8,
         color = "#ffffff",
         weight = 2,
-        fillColor = "#f59e0b",
+        fillColor = ~COR_MARCADOR,
         fillOpacity = 1,
         group = "escolas_destaque",
         layerId = ~ paste0("raio_", ESCOLA_BUSCA),
