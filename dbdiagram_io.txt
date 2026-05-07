@@ -1,0 +1,61 @@
+Table "Detalhes Escolas Quantitativos (3)" {
+  "COD. ESCOLA" integer [primary key]
+  "COORD. REGIONAL" varchar
+  MUNICÍPIO varchar
+  ESCOLA varchar
+  LATITUDE int
+  LONGITUDE int 
+  "DEP. ADMINISTRATIVA" varchar
+  CONVÊNIO varchar
+  ENDEREÇO varchar
+  CAPACIDADE varchar
+  PORTE varchar
+  "QTDE. DE ALUNOS" varchar
+  "QTDE. DE SALAS ATIVAS" varchar
+  OCUPAÇÃO varchar
+
+}
+
+Table "Quantitativo Alunos Por Turma" {
+"COD. ESCOLA" integer [primary key]
+LOCALIZAÇÃO varchar
+CARACTERÍSTICA varchar
+TURNO varchar
+"TIPO DE MEDIAÇÃO PEDAGÓGICA" varchar
+"ENSINO MODALIDADE" varchar
+"CÓD. COMPOSIÇÃO" int
+COMPOSIÇÃO varchar
+"CÓD. TURMA" varchar
+TURMA varchar
+SÉRIE varchar
+"LOCAL DE FUNCIONAMENTO DIFERENCIADO" varchar
+"QTDE. ALUNOS FREQUENTES" int
+"QTDE. ALUNOS TRANSFERIDOS" int
+"QTDE. INFREQUÊNCIA ESCOLAR" int
+"QTDE. ALUNOS FALECIDOS" int
+}
+
+Table "Escola Estrutura"{
+  "Código Escola" integer [primary key]
+  "Qtde. de Salas Ativas" int
+  "Local de Funcionamento" varchar
+  "Natureza de Ocupação" varchar
+  "Gestor(a)" varchar
+  Telefone varchar
+  "E-mail" varchar
+
+}
+
+Table "Detalhes Servidor (2)"{
+  CHAVE_REGIONAL_MUNICIPIO_ESCOLA varchar [primary key]
+  "Município" varchar
+  lotacao varchar
+  "COORD. REGIONAL" varchar
+  NOME_SERVIDOR varchar
+  CARGO varchar
+  SITUACAO varchar
+}
+
+Ref: "Detalhes Escolas Quantitativos (3)"."COD. ESCOLA" < "Quantitativo Alunos Por Turma"."COD. ESCOLA"
+
+Ref: "Detalhes Escolas Quantitativos (3)"."COD. ESCOLA" < "Escola Estrutura"."Código Escola"

@@ -1,0 +1,6 @@
+.Rhistory
+.RData
+
+settings.json
+*.xlsx
+.env
